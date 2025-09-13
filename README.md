@@ -1,6 +1,6 @@
 # Portfolio
 
-This repository contains a personal portfolio web application built with React, Vite, TypeScript and a small Express server. The client is located in the `client` folder and the server entry is `server/index.ts`. The project uses TailwindCSS for styling and Drizzle for database schema tooling.
+This repository contains a personal portfolio web application built with React, Vite, TypeScript, and a small Express server. The client is located in the `client` folder, and the server entry is `server/index.ts`. The project uses TailwindCSS for styling and Drizzle for database schema tooling.
 
 Quick summary
 
@@ -10,7 +10,7 @@ Quick summary
 - Database tooling: Drizzle / drizzle-kit
 
 Why this README
-This README covers how to install, build and run the project locally, plus notes about a recent cleanup (Replit-specific plugins were removed so the repository works in standard local environments).
+This README outlines the steps to install, build, and run the project locally
 
 ## Getting started
 
@@ -26,7 +26,7 @@ Install dependencies
 npm install
 ```
 
-Run development server
+Run the development server
 
 ```bash
 # starts the dev server (client + server) depending on your setup
@@ -77,10 +77,6 @@ Project structure (important files)
 - `vite.config.ts` — Vite configuration (client build)
 - `package.json` — root scripts and dependencies
 - `drizzle.config.ts` & `shared/schema.ts` — database schema/tooling
-
-## Contributing
-
-Feel free to open issues or submit PRs. Keep changes small and focused. If you change build scripts, include updated instructions here.
 
 ## License
 
