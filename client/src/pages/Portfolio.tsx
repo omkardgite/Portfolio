@@ -1,10 +1,9 @@
 import { Navigation } from "../components/Navigation";
 import { HeroSection } from "../components/HeroSection";
-import { AboutSection } from "../components/AboutSection";
-import { SkillsSection } from "../components/SkillsSection";
-import { ProjectsSection } from "../components/ProjectsSection";
-import { ExperienceSection } from "../components/ExperienceSection";
-import { ProblemSolvingSection } from "../components/ProblemSolvingSection";
+import { AboutSection } from "../components/AboutSection/AboutSection";
+import { SkillsSection } from "../components/SkillsSection/SkillsSection";
+import { ProjectsSection } from "../components/ProjectsSection/ProjectsSection";
+import { ExperienceSection } from "../components/ExperienceSection/ExperienceSection";
 import { ContactSection } from "../components/ContactSection";
 import { Footer } from "../components/Footer";
 

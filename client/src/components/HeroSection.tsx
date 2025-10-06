@@ -10,14 +10,12 @@ export function HeroSection() {
   const [displayText, setDisplayText] = useState("");
   const downloadButtonRef = useRef<HTMLButtonElement>(null);
   const contactButtonRef = useRef<HTMLButtonElement>(null);
-  const viewWorkButtonRef = useRef<HTMLButtonElement>(null);
 
   const roles = [
     "Frontend Developer",
     "React & Next.js Specialist",
     "JavaScript & TypeScript Developer",
   ];
-
   useEffect(() => {
     const typeEffect = () => {
       const current = roles[currentRole];
@@ -43,25 +41,16 @@ export function HeroSection() {
   }, [currentChar, isDeleting, currentRole, roles]);
 
   const downloadResume = () => {
-    // Create a sample PDF blob for demonstration
-    const pdfUrl = "/alex-johnson-resume.pdf"; // In a real app, this would be a real PDF file
+    const pdfUrl = "/Resume_OmkarGite.pdf";
     const link = document.createElement("a");
     link.href = pdfUrl;
-    link.download = "Alex-Johnson-Resume.pdf";
+    link.download = "Omkar-Gite-Resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
-
   const scrollToContact = () => {
     const element = document.querySelector("#contact");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const scrollToProjects = () => {
-    const element = document.querySelector("#projects");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
@@ -148,16 +137,17 @@ export function HeroSection() {
             transition={{ delay: 0.6, duration: 0.8 }}
           >
             <motion.button
-              ref={viewWorkButtonRef}
-              onClick={scrollToProjects}
-              onMouseMove={(e) => handleMouseMove(e, viewWorkButtonRef)}
-              onMouseLeave={() => handleMouseLeave(viewWorkButtonRef)}
+              ref={downloadButtonRef}
+              onClick={downloadResume}
+              onMouseMove={(e) => handleMouseMove(e, downloadButtonRef)}
+              onMouseLeave={() => handleMouseLeave(downloadButtonRef)}
               data-testid="view-my-work"
               className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              View My Work
+              <FaDownload className="inline mr-2" />
+              Download Resume
             </motion.button>
 
             <motion.button

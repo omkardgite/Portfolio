@@ -1,63 +1,18 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import {
-  FaLaptopCode,
-  FaServer,
-  FaTools,
-  FaCode,
-  FaCogs,
-} from "react-icons/fa";
-import { ReduxCounterDemo } from "./demos/ReduxCounterDemo";
-import { KanbanBoardDemo } from "./demos/KanbanBoardDemo";
-import { ThemeCustomizerDemo } from "./demos/ThemeCustomizerDemo";
+import { ReduxCounterDemo } from "../demos/ReduxCounterDemo";
+import { KanbanBoardDemo } from "../demos/KanbanBoardDemo";
+import { ThemeCustomizerDemo } from "../demos/ThemeCustomizerDemo";
+import { skillCategories } from "./SkillCategories";
 
 interface Skill {
   name: string;
   percentage: number;
 }
 
-interface SkillCategory {
-  title: string;
-  icon: JSX.Element;
-  skills: Skill[];
-}
-
 export function SkillsSection() {
   const [isVisible, setIsVisible] = useState(false);
   const [activeTab, setActiveTab] = useState<"skills" | "demos">("skills");
-
-  const skillCategories: SkillCategory[] = [
-    {
-      title: "Core Frontend",
-      icon: <FaLaptopCode className="text-primary text-2xl" />,
-      skills: [
-        { name: "React.js", percentage: 95 },
-        { name: "TypeScript", percentage: 92 },
-        { name: "Next.js", percentage: 90 },
-        { name: "Vue.js", percentage: 55 },
-      ],
-    },
-    {
-      title: "Styling & Animation",
-      icon: <FaServer className="text-primary text-2xl" />,
-      skills: [
-        { name: "Tailwind CSS", percentage: 95 },
-        { name: "Sass/SCSS", percentage: 50 },
-        { name: "Framer Motion", percentage: 40 },
-        { name: "CSS Grid/Flexbox", percentage: 92 },
-      ],
-    },
-    {
-      title: "Tools & Workflow",
-      icon: <FaTools className="text-primary text-2xl" />,
-      skills: [
-        { name: "Vite/Webpack", percentage: 90 },
-        { name: "Git & GitHub", percentage: 95 },
-        { name: "Figma", percentage: 88 },
-        { name: "Chrome DevTools", percentage: 92 },
-      ],
-    },
-  ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(

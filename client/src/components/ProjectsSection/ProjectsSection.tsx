@@ -3,13 +3,12 @@ import { useState } from "react";
 import {
   FaGithub,
   FaExternalLinkAlt,
-  FaArrowRight,
   FaTimes,
   FaEye,
-  FaCode,
   FaCog,
   FaUsers,
 } from "react-icons/fa";
+import { projects } from "./Projects";
 
 interface Project {
   id: string;
@@ -34,124 +33,6 @@ interface Project {
 export function ProjectsSection() {
   const [selectedFilter, setSelectedFilter] = useState<string>("All");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
-  const projects: Project[] = [
-    {
-      id: "ecommerce",
-      title: "E-commerce Frontend",
-      description:
-        "A responsive e-commerce interface with advanced filtering, smooth animations, and optimized performance.",
-      image:
-        "https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&h=300",
-      imageAlt: "E-commerce Frontend - Modern shopping interface",
-      techStack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
-      category: "Frontend",
-      githubUrl: "https://github.com/alexjohnson/ecommerce-frontend",
-      liveUrl: "https://ecommerce-demo.example.com",
-      caseStudy: {
-        problem:
-          "Client needed a modern, fast e-commerce platform to replace their outdated system and increase conversion rates.",
-        role: "Lead Frontend Developer - Designed and built the entire user interface from wireframes to production.",
-        challenges: [
-          "Complex product filtering",
-          "Performance with large catalogs",
-          "Mobile responsiveness",
-          "Payment integration UI",
-        ],
-        solutions: [
-          "Implemented virtualized lists for performance",
-          "Created reusable component library",
-          "Added progressive loading",
-          "Optimized images and lazy loading",
-        ],
-        results:
-          "40% increase in mobile conversions, 60% faster page load times, 95+ Lighthouse performance score.",
-        keyFeatures: [
-          "Advanced search & filters",
-          "Shopping cart persistence",
-          "Responsive design",
-          "Payment integration",
-        ],
-      },
-    },
-    {
-      id: "dashboard",
-      title: "Task Management Dashboard",
-      description:
-        "An interactive productivity dashboard with drag-and-drop functionality, custom animations, and responsive design.",
-      image:
-        "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&h=300",
-      imageAlt:
-        "Task Management Dashboard - Interactive productivity interface",
-      techStack: ["Next.js", "TypeScript", "React DnD", "Styled Components"],
-      category: "Full Stack",
-      githubUrl: "https://github.com/alexjohnson/task-dashboard",
-      liveUrl: "https://taskdashboard-demo.example.com",
-      caseStudy: {
-        problem:
-          "Team needed a custom project management tool with specific workflow requirements not available in existing solutions.",
-        role: "Full Stack Developer - Built entire application including database design, API, and responsive frontend.",
-        challenges: [
-          "Complex drag-and-drop interactions",
-          "Real-time collaboration",
-          "Custom workflow states",
-          "Performance optimization",
-        ],
-        solutions: [
-          "React DnD for smooth interactions",
-          "Socket.io for real-time updates",
-          "Custom state management",
-          "Optimistic UI updates",
-        ],
-        results:
-          "50% improvement in team productivity, 30% reduction in task completion time, adopted by 3 teams.",
-        keyFeatures: [
-          "Kanban board interface",
-          "Real-time collaboration",
-          "Custom workflows",
-          "Time tracking",
-        ],
-      },
-    },
-    {
-      id: "dataviz",
-      title: "Data Visualization Suite",
-      description:
-        "An interactive data visualization platform with custom charts, real-time updates, and beautiful animations.",
-      image:
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&h=300",
-      imageAlt: "Data Visualization Suite - Interactive charts interface",
-      techStack: ["React", "D3.js", "Chart.js", "Three.js"],
-      category: "Frontend",
-      githubUrl: "https://github.com/alexjohnson/dataviz-suite",
-      liveUrl: "https://dataviz-demo.example.com",
-      caseStudy: {
-        problem:
-          "Analytics team needed custom data visualizations that existing tools couldn't provide, with specific interactivity requirements.",
-        role: "Frontend Specialist - Created custom visualization components and interactive dashboard from scratch.",
-        challenges: [
-          "Complex data transformations",
-          "Performance with large datasets",
-          "Custom chart types",
-          "Real-time data updates",
-        ],
-        solutions: [
-          "D3.js for custom visualizations",
-          "Virtual scrolling for large datasets",
-          "Canvas rendering for performance",
-          "WebSocket integration",
-        ],
-        results:
-          "80% faster data analysis workflow, 10x more interactive insights, adopted across 5 departments.",
-        keyFeatures: [
-          "Custom chart library",
-          "Real-time data updates",
-          "Interactive filtering",
-          "Export capabilities",
-        ],
-      },
-    },
-  ];
 
   const categories = [
     "All",
@@ -234,13 +115,12 @@ export function ProjectsSection() {
                 transition: { duration: 0.03 },
               }}
               layout
-              onClick={() => openCaseStudy(project)}
             >
               <div className="relative overflow-hidden">
                 <motion.img
                   src={project.image}
                   alt={project.imageAlt}
-                  className="w-full h-48 object-cover"
+                  className="w-full h-48 object-contain"
                   whileHover={{ scale: 1.1, transition: { duration: 0.3 } }}
                 />
               </div>
@@ -291,26 +171,31 @@ export function ProjectsSection() {
                     <FaEye className="mr-1" />
                     Case Study
                   </motion.button>
-                  <motion.button
-                    onClick={() => openLink(project.githubUrl)}
-                    data-testid={`project-github-${project.id}`}
-                    className="text-primary hover:underline flex items-center text-sm"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <FaGithub className="mr-1" />
-                    Code
-                  </motion.button>
-                  <motion.button
-                    onClick={() => openLink(project.liveUrl)}
-                    data-testid={`project-live-${project.id}`}
-                    className="text-primary hover:underline flex items-center text-sm"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <FaExternalLinkAlt className="mr-1" />
-                    Live Demo
-                  </motion.button>
+                  {project.githubUrl && (
+                    <motion.button
+                      onClick={() => openLink(project.githubUrl)}
+                      data-testid={`project-github-${project.id}`}
+                      className="text-primary hover:underline flex items-center text-sm"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <FaGithub className="mr-1" />
+                      Code
+                    </motion.button>
+                  )}
+
+                  {project.liveUrl && (
+                    <motion.button
+                      onClick={() => openLink(project.liveUrl)}
+                      data-testid={`project-live-${project.id}`}
+                      className="text-primary hover:underline flex items-center text-sm"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <FaExternalLinkAlt className="mr-1" />
+                      Live Demo
+                    </motion.button>
+                  )}
                 </div>
               </div>
             </motion.div>
@@ -382,7 +267,7 @@ export function ProjectsSection() {
               <img
                 src={selectedProject.image}
                 alt={selectedProject.imageAlt}
-                className="w-full h-48 object-cover rounded-lg"
+                className="w-full h-48 object-contain rounded-lg"
               />
               <div>
                 <h4 className="font-semibold mb-2 flex items-center">
@@ -460,24 +345,28 @@ export function ProjectsSection() {
               </div>
 
               <div className="flex space-x-4 pt-4">
-                <motion.button
-                  onClick={() => openLink(selectedProject.liveUrl)}
-                  className="bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium flex items-center"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FaExternalLinkAlt className="mr-2" />
-                  View Live Project
-                </motion.button>
-                <motion.button
-                  onClick={() => openLink(selectedProject.githubUrl)}
-                  className="border border-border px-6 py-3 rounded-lg font-medium flex items-center"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FaGithub className="mr-2" />
-                  View Code
-                </motion.button>
+                {selectedProject.liveUrl && (
+                  <motion.button
+                    onClick={() => openLink(selectedProject.liveUrl)}
+                    className="bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium flex items-center"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <FaExternalLinkAlt className="mr-2" />
+                    View Live Project
+                  </motion.button>
+                )}
+                {selectedProject.githubUrl && (
+                  <motion.button
+                    onClick={() => openLink(selectedProject.githubUrl)}
+                    className="border border-border px-6 py-3 rounded-lg font-medium flex items-center"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <FaGithub className="mr-2" />
+                    View Code
+                  </motion.button>
+                )}
               </div>
             </div>
           </motion.div>
